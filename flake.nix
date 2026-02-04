@@ -71,10 +71,6 @@
             if [ -d "$npmDeps" ]; then
               cp -r $npmDeps node_modules
             fi
-            # Install dependencies if needed (no-op if none)
-            if [ -f package.json ]; then
-              npm install --offline --ignore-scripts --no-audit --no-fund || true
-            fi
             # Package the extension as .vsix
             vsce package --no-git-tag-version --skip-license --no-update-package-json --allow-star-activation --no-dependencies --out synthwave-blues.vsix
           '';
