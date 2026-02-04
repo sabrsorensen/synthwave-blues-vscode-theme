@@ -94,7 +94,7 @@ This repository also provides VS Code with the SynthWave Blues theme baked direc
 
 ```bash
 # Run directly from GitHub
-nix run github:youruser/synthwave-blues-vscode-theme
+nix run github:sabrsorensen/synthwave-blues-vscode-theme
 
 # Or build and run locally
 nix build
@@ -109,7 +109,7 @@ Add to your `flake.nix`:
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    synthwave-blues-vscode.url = "github:youruser/synthwave-blues-vscode-theme";
+    synthwave-blues-vscode.url = "github:sabrsorensen/synthwave-blues-vscode-theme";
   };
 
   outputs = { self, nixpkgs, synthwave-blues-vscode }:
@@ -148,4 +148,4 @@ Add to your `flake.nix`:
 
 - `default` - Build the .vsix extension file
 - `extension` - Alias for `default`
-- `vscode-synthwave-blues` - Descriptive alias for `default`
+- `vscode-synthwave-blues` - VS Code with Synthwave Blues theme baked in
