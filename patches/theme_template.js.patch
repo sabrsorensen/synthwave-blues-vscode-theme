@@ -1,0 +1,87 @@
+diff --git i/src/js/theme_template.js w/src/js/theme_template.js
+index d60f6a0..7433680 100644
+--- i/src/js/theme_template.js
++++ w/src/js/theme_template.js
+@@ -56,9 +56,24 @@
+    * @returns {boolean}
+    */
+   const usingSynthwave = () => {
++    // Check for our baked-in theme, extension theme, or any synthwave-blues-related theme
+     const appliedTheme = document.querySelector('[class*="theme-json"]');
+-    const synthWaveTheme = document.querySelector('[class*="sabrsorensen-synthwave-blues-themes"]');
+-    return appliedTheme && synthWaveTheme;
++    const synthWaveTheme = document.querySelector('[class*="sabrsorensen-synthwave-blues-themes"]') ||
++                          document.querySelector('[class*="synthwave-blues"]') ||
++                          document.querySelector('[class*="Synthwave-Blues"]') ||
++                          document.querySelector('[class*="synthwave"]') ||
++                          document.querySelector('[class*="Synthwave"]');
++
++    // Also check the body class and workbench theme attribute for baked-in themes
++    const bodyTheme = document.body.className.toLowerCase().includes('synthwave') ||
++                      document.body.className.toLowerCase().includes('blues') ||
++                      document.body.className.toLowerCase().includes('neon') ||
++                      document.body.className.toLowerCase().includes('glow');
++
++    // For non-Nix extension use, be more permissive with theme detection
++    const hasAppliedTheme = appliedTheme || document.querySelector('.monaco-workbench');
++
++    return hasAppliedTheme && (synthWaveTheme || bodyTheme);
+   }
+ 
+   /**
+@@ -76,12 +91,35 @@
+     )
+     : false;
+ 
++  /**
++   * @summary Get VS Code settings (compatible with both extension and baked-in versions)
++   * @returns {object}
++   */
++  const getSettings = () => {
++    // For extension version, try to get settings from VS Code API
++    try {
++      if (typeof acquireVsCodeApi !== 'undefined') {
++        const vscode = acquireVsCodeApi();
++        // Extension can access workspace configuration
++        // For now, use build-time defaults since webview settings access is complex
++      }
++    } catch (e) {
++      // Settings API not available, use defaults
++    }
++
++    // Default settings - these will be replaced at build time for baked-in version
++    return {
++      disableGlow: [DISABLE_GLOW],
++      brightness: parseFloat('[NEON_BRIGHTNESS]') / 255 || 0.45
++    };
++  };
++
+   /**
+    * @summary Attempts to bootstrap the theme
+-   * @param {boolean} disableGlow
+    * @param {MutationObserver} obs
+    */
+-  const initNeonDreams = (disableGlow, obs) => {
++  const initNeonDreams = (obs) => {
++    const settings = getSettings();
+     const tokensEl = document.querySelector('.vscode-tokens-styles');
+ 
+     if (!tokensEl || !readyForReplacement(tokensEl, tokenReplacements)) {
+@@ -93,7 +131,7 @@
+       const initialThemeStyles = tokensEl.innerText;
+ 
+       // Replace tokens with glow styles
+-      let updatedThemeStyles = !disableGlow
++      let updatedThemeStyles = !settings.disableGlow
+         ? replaceTokens(initialThemeStyles, tokenReplacements)
+         : initialThemeStyles;
+ 
+@@ -125,7 +163,7 @@
+         const tokensEl = document.querySelector('.vscode-tokens-styles');
+         if (readyForReplacement(tokensEl, tokenReplacements)) {
+           // If everything we need is ready, then initialise
+-          initNeonDreams([DISABLE_GLOW], observer);
++          initNeonDreams(observer);
+         } else {
+           if (tokensEl) {
+             // sometimes VS code takes a while to init the styles content, so if there stop this observer and add an observer for that
