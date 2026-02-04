@@ -3,26 +3,24 @@
   // Theme replacement CSS (Glow styles)
   //====================================
   const tokenReplacements = {
-    // /* Red */
-    // 'fe4450': "color: #fff5f6; text-shadow: 0 0 2px #000, 0 0 10px #fc1f2c[NEON_BRIGHTNESS], 0 0 5px #fc1f2c[NEON_BRIGHTNESS], 0 0 25px #fc1f2c[NEON_BRIGHTNESS]; backface-visibility: hidden;",
-    // /* Neon pink */
-    // 'ff7edb': "color: #f92aad; text-shadow: 0 0 2px #100c0f, 0 0 5px #dc078e33, 0 0 10px #fff3; backface-visibility: hidden;",
-    // /* Yellow */
-    // 'fede5d': "color: #f4eee4; text-shadow: 0 0 2px #393a33, 0 0 8px #f39f05[NEON_BRIGHTNESS], 0 0 2px #f39f05[NEON_BRIGHTNESS]; backface-visibility: hidden;",
-    // /* Green */
-    // '72f1b8': "color: #72f1b8; text-shadow: 0 0 2px #100c0f, 0 0 10px #257c55[NEON_BRIGHTNESS], 0 0 35px #212724[NEON_BRIGHTNESS]; backface-visibility: hidden;",
-    // /* Blue */
-    // '36f9f6': "color: #fdfdfd; text-shadow: 0 0 2px #001716, 0 0 3px #03edf9[NEON_BRIGHTNESS], 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #03edf9[NEON_BRIGHTNESS]; backface-visibility: hidden;",
-    /* replace neon red */
+    /* replace neon red - entities, classes, language vars, support */
     'd64a53': "color: #ff3341; text-shadow: 0 0 2px #ff4a00, 0 0 3px #fc1f2c[NEON_BRIGHTNESS], 0 0 5px #fc1f2c[NEON_BRIGHTNESS];",
-    /* replace yellow */
+    /* replace yellow - keywords, storage types, operators */
     'fede5d': "color: #f9faaa; text-shadow: 0 0 2px #f9faaa, 0 0 3px #f39f05[NEON_BRIGHTNESS], 0 0 5px #f39f05[NEON_BRIGHTNESS], 0 0 8px #f39f05[NEON_BRIGHTNESS];",
-    /* replace green */
+    /* replace green - HTML tags, CSS props, exports, template expressions */
     '72f1b8': "color: #72f1b8; text-shadow: 0 0 2px #100c0f, 0 0 10px #257c55[NEON_BRIGHTNESS], 0 0 35px #212724[NEON_BRIGHTNESS];",
-    /* replace neon blue */
+    /* replace neon blue - functions, escape chars, tag brackets, CSS #id */
     '36f9f6': "color: #3688f6; text-shadow: 0 0 2px #001716, 0 0 3px #36bbf9[NEON_BRIGHTNESS], 0 0 5px #36bbf9[NEON_BRIGHTNESS], 0 0 8px #36bbf9[NEON_BRIGHTNESS];",
-    /* replace light blue */
-    '7ed0ff': "color: #15f4ee; text-shadow: 0 0 2px #001716, 0 0 3px #03edf9[NEON_BRIGHTNESS], 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #03edf9[NEON_BRIGHTNESS];"
+    /* replace light blue - variables, object keys, headings */
+    '7ed0ff': "color: #15f4ee; text-shadow: 0 0 2px #001716, 0 0 3px #03edf9[NEON_BRIGHTNESS], 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #03edf9[NEON_BRIGHTNESS];",
+    /* replace coral - constants, numbers, regex, link descriptions */
+    'f97e72': "color: #f97e72; text-shadow: 0 0 2px #100c0f, 0 0 5px #f74a3a[NEON_BRIGHTNESS], 0 0 8px #f97e72[NEON_BRIGHTNESS];",
+    /* replace turquoise/cyan - strings, quoted strings */
+    '4ce9d9': "color: #4ce9d9; text-shadow: 0 0 2px #00fff7, 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #4ce9d9[NEON_BRIGHTNESS];",
+    /* replace cyan - JS/Dart/Go numerics, markdown emphasis */
+    '2ee2fa': "color: #2ee2fa; text-shadow: 0 0 2px #001716, 0 0 5px #0bc5e0[NEON_BRIGHTNESS], 0 0 8px #2ee2fa[NEON_BRIGHTNESS];",
+    /* replace gold - tag attributes */
+    'ffd940': "color: #ffd940; text-shadow: 0 0 2px #100c0f, 0 0 5px #e6b800[NEON_BRIGHTNESS], 0 0 8px #ffd940[NEON_BRIGHTNESS];"
   };
 
   //=============================
@@ -90,22 +88,25 @@
       return;
     }
 
-    const initialThemeStyles = tokensEl.innerText;
+    // Add the theme styles if they don't already exist in the DOM
+    if (!document.querySelector('#synthwave-84-blues-theme-styles')) {
+      const initialThemeStyles = tokensEl.innerText;
 
-    // Replace tokens with glow styles
-    let updatedThemeStyles = !disableGlow
-      ? replaceTokens(initialThemeStyles, tokenReplacements)
-      : initialThemeStyles;
+      // Replace tokens with glow styles
+      let updatedThemeStyles = !disableGlow
+        ? replaceTokens(initialThemeStyles, tokenReplacements)
+        : initialThemeStyles;
 
-    /* append the remaining styles */
-    updatedThemeStyles = `${updatedThemeStyles}[CHROME_STYLES]`;
+      /* append the remaining styles */
+      updatedThemeStyles = `${updatedThemeStyles}[CHROME_STYLES]`;
 
-    const newStyleTag = document.createElement('style');
-    newStyleTag.setAttribute("id", "synthwave-84-blues-theme-styles");
-    newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
-    document.body.appendChild(newStyleTag);
+      const newStyleTag = document.createElement('style');
+      newStyleTag.setAttribute("id", "synthwave-84-blues-theme-styles");
+      newStyleTag.innerText = updatedThemeStyles.replace(/(\r\n|\n|\r)/gm, '');
+      document.body.appendChild(newStyleTag);
 
-    console.log('Synthwave \'84 Blues: NEON DREAMS initialised!');
+      console.log('Synthwave \'84 Blues: NEON DREAMS initialized!');
+    }
 
     // disconnect the observer because we don't need it anymore
     if (obs) {
@@ -119,23 +120,18 @@
    */
   const watchForBootstrap = function(mutationsList, observer) {
     for(let mutation of mutationsList) {
-      if (mutation.type === 'attributes') {
+      if (mutation.type === 'attributes' || mutation.type === 'childList') {
         // does the style div exist yet?
         const tokensEl = document.querySelector('.vscode-tokens-styles');
         if (readyForReplacement(tokensEl, tokenReplacements)) {
           // If everything we need is ready, then initialise
           initNeonDreams([DISABLE_GLOW], observer);
         } else {
-          // sometimes VS code takes a while to init the styles content, so if there stop this observer and add an observer for that
-          observer.disconnect();
-          observer.observe(tokensEl, { childList: true });
-        }
-      }
-      if (mutation.type === 'childList') {
-        const tokensEl = document.querySelector('.vscode-tokens-styles');
-        if (readyForReplacement(tokensEl, tokenReplacements)) {
-          // Everything we need should be ready now, so initialise
-          initNeonDreams([DISABLE_GLOW], observer);
+          if (tokensEl) {
+            // sometimes VS code takes a while to init the styles content, so if there stop this observer and add an observer for that
+            observer.disconnect();
+            observer.observe(tokensEl, { childList: true });
+          }
         }
       }
     }
@@ -144,10 +140,12 @@
   //=============================
   // Start bootstrapping!
   //=============================
-  initNeonDreams([DISABLE_GLOW]);
   // Grab body node
   const bodyNode = document.querySelector('body');
   // Use a mutation observer to check when we can bootstrap the theme
   const observer = new MutationObserver(watchForBootstrap);
-  observer.observe(bodyNode, { attributes: true });
+  /* watch for both attribute and childList changes because, depending on
+  the VS code version, the mutations might happen on the body, or they might
+  happen on a nested div */
+  observer.observe(bodyNode, { attributes: true, childList: true });
 })();

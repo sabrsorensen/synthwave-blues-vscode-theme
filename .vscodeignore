@@ -1,4 +1,11 @@
+.github/**
 .vscode/**
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
+NightDrive.js
+result
+patches/
+shell.nix
+flake.nix
+flake.lock

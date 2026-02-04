@@ -85,3 +85,67 @@ Standing on the shoulders of giants, this wouldn't be possible without Robb0wen'
 > If this theme is too much, then I recommend [Horizon](https://github.com/jolaleye/horizon-theme-vscode), or [City Lights](http://citylights.xyz/) for a similar, yet more understated, retro vibe. They're both beautiful.
 
 > Banner cityscape image from [Unsplash](https://unsplash.com/photos/DxHR8K5Egjk)
+
+### Nix Flake Installation (Baked-in Theme)
+
+This repository also provides VS Code with the SynthWave Blues theme baked directly into the application, eliminating the need for manual extension installation or patching.
+
+#### Quick Start
+
+```bash
+# Run directly from GitHub
+nix run github:youruser/synthwave-blues-vscode-theme
+
+# Or build and run locally
+nix build
+./result/bin/code
+```
+
+#### Using as a Flake Input
+
+Add to your `flake.nix`:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    synthwave-blues-vscode.url = "github:youruser/synthwave-blues-vscode-theme";
+  };
+
+  outputs = { self, nixpkgs, synthwave-blues-vscode }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      # Use in NixOS configuration
+      nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          {
+            environment.systemPackages = [
+              synthwave-blues-vscode.packages.${system}.default
+            ];
+          }
+        ];
+      };
+
+      # Use in Home Manager
+      homeConfigurations.myuser = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          {
+            home.packages = [
+              synthwave-blues-vscode.packages.${system}.vscode-synthwave-blues
+            ];
+          }
+        ];
+      };
+    };
+}
+```
+
+#### Available Packages
+
+- `default` - Build the .vsix extension file
+- `extension` - Alias for `default`
+- `vscode-synthwave-blues` - Descriptive alias for `default`

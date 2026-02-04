@@ -2,7 +2,7 @@
   "name": "synthwave-blues",
   "displayName": "SynthWave '84 Blues",
   "description": "A blue twist on robb0wen's SynthWave '84, a Synthwave-inspired colour theme to satisfy your neon dreams",
-  "version": "0.0.5",
+  "version": "0.1.20",
   "author": "Sam Sorensen",
   "publisher": "sabrsorensen",
   "icon": "icon.png",
@@ -13,6 +13,9 @@
   "engines": {
     "vscode": "^1.33.0"
   },
+  "extensionKind": [
+    "ui"
+  ],
   "keywords": [
     "retro",
     "80s",
