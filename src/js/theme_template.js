@@ -12,15 +12,15 @@
     /* replace neon blue - functions, escape chars, tag brackets, CSS #id */
     '36f9f6': "color: #3688f6; text-shadow: 0 0 2px #001716, 0 0 3px #36bbf9[NEON_BRIGHTNESS], 0 0 5px #36bbf9[NEON_BRIGHTNESS], 0 0 8px #36bbf9[NEON_BRIGHTNESS];",
     /* replace light blue - variables, object keys, headings */
-    '7ed0ff': "color: #15f4ee; text-shadow: 0 0 2px #001716, 0 0 3px #03edf9[NEON_BRIGHTNESS], 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #03edf9[NEON_BRIGHTNESS];",
-    /* replace coral - constants, numbers, regex, link descriptions */
-    'f97e72': "color: #f97e72; text-shadow: 0 0 2px #100c0f, 0 0 5px #f74a3a[NEON_BRIGHTNESS], 0 0 8px #f97e72[NEON_BRIGHTNESS];",
-    /* replace turquoise/cyan - strings, quoted strings */
-    '4ce9d9': "color: #4ce9d9; text-shadow: 0 0 2px #00fff7, 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #4ce9d9[NEON_BRIGHTNESS];",
-    /* replace cyan - JS/Dart/Go numerics, markdown emphasis */
-    '2ee2fa': "color: #2ee2fa; text-shadow: 0 0 2px #001716, 0 0 5px #0bc5e0[NEON_BRIGHTNESS], 0 0 8px #2ee2fa[NEON_BRIGHTNESS];",
-    /* replace gold - tag attributes */
-    'ffd940': "color: #ffd940; text-shadow: 0 0 2px #100c0f, 0 0 5px #e6b800[NEON_BRIGHTNESS], 0 0 8px #ffd940[NEON_BRIGHTNESS];"
+    '7ed0ff': "color: #15f4ee; text-shadow: 0 0 2px #001716, 0 0 3px #03edf9[NEON_BRIGHTNESS], 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #03edf9[NEON_BRIGHTNESS];"
+    ///* replace coral - constants, numbers, regex, link descriptions */
+    //'f97e72': "color: #f97e72; text-shadow: 0 0 2px #100c0f, 0 0 5px #f74a3a[NEON_BRIGHTNESS], 0 0 8px #f97e72[NEON_BRIGHTNESS];",
+    ///* replace turquoise/cyan - strings, quoted strings */
+    //'4ce9d9': "color: #4ce9d9; text-shadow: 0 0 2px #00fff7, 0 0 5px #03edf9[NEON_BRIGHTNESS], 0 0 8px #4ce9d9[NEON_BRIGHTNESS];",
+    ///* replace cyan - JS/Dart/Go numerics, markdown emphasis */
+    //'2ee2fa': "color: #2ee2fa; text-shadow: 0 0 2px #001716, 0 0 5px #0bc5e0[NEON_BRIGHTNESS], 0 0 8px #2ee2fa[NEON_BRIGHTNESS];",
+    ///* replace gold - tag attributes */
+    //'ffd940': "color: #ffd940; text-shadow: 0 0 2px #100c0f, 0 0 5px #e6b800[NEON_BRIGHTNESS], 0 0 8px #ffd940[NEON_BRIGHTNESS];"
   };
 
   //=============================
