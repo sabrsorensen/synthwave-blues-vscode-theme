@@ -64,7 +64,7 @@
 
           inherit src npmDeps;
 
-          nativeBuildInputs = with pkgs; [ nodejs nodePackages.npm vsce ];
+          nativeBuildInputs = with pkgs; [ nodejs vsce ];
 
           buildPhase = ''
             # Use vendored node_modules for reproducible builds

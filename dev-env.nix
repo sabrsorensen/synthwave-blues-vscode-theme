@@ -2,7 +2,6 @@
 {
   buildInputs = with pkgs; [
     nodejs
-    nodePackages.npm
     vsce
     jq
     git
